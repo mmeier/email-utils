@@ -18,4 +18,12 @@ describe('emailChecker', () => {
 
 		expect(emailChecker.checkEmails(testEmails)).toEqual(1);
 	});
+
+	it('should throw an error if the parser does', () => {
+		const dummyParser = () => {
+			throw new Error('Boom!');
+		}
+
+		expect(() => {emailChecker.checkEmails('asdf', dummyParser)}).toThrow('Boom!');
+	})
 });
