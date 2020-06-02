@@ -1,5 +1,6 @@
 import { normalizeEmail } from './normalizeEmail';
 import { parseStringArray } from './parseStringArray';
+import { validateEmail } from './validateEmail';
 
 export class EmailChecker {
 
@@ -16,6 +17,13 @@ export class EmailChecker {
 		const emailSet = new Set<string>();
 
 		emails.filter(email => !!email)
+			.map(email => {
+				if(validateEmail(email)) {
+					return email;
+				}
+
+				throw new Error(`Invalid email: ${email}`);
+			})
 			.map(email => normalizeEmail(email))
 			.forEach(email => emailSet.add(email));
 

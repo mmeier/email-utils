@@ -41,11 +41,19 @@ describe('emailChecker', () => {
 		expect(emailChecker.checkEmails(testEmails)).toEqual(3);
 	});
 
+	it('should throw an error if there is an invalid email', () => {
+		const testEmails = JSON.stringify([
+			'onetwothreefour',
+		]);
+
+		expect(() => {emailChecker.checkEmails(testEmails)}).toThrow('Invalid email');
+	});
+
 	it('should throw an error if the parser does', () => {
 		const dummyParser = () => {
 			throw new Error('Boom!');
 		}
 
 		expect(() => {emailChecker.checkEmails('asdf', dummyParser)}).toThrow('Boom!');
-	})
+	});
 });
