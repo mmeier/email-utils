@@ -16,7 +16,8 @@ export class EmailChecker {
 
 		const emailSet = new Set<string>();
 
-		emails.filter(email => !!email)
+		emails.map(email => email.trim())
+			.filter(email => !!email)
 			.map(email => {
 				if(validateEmail(email)) {
 					return email;

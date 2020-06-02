@@ -41,6 +41,17 @@ describe('emailChecker', () => {
 		expect(emailChecker.checkEmails(testEmails)).toEqual(3);
 	});
 
+	it('should ignore leading/trailing whitespace count empty strings as emails', () => {
+		const testEmails = JSON.stringify([
+			'one@gmail.com',
+			'   one@gmail.com',
+			'   ',
+			'one@gmail.com   ',
+		]);
+
+		expect(emailChecker.checkEmails(testEmails)).toEqual(1);
+	});
+
 	it('should throw an error if there is an invalid email', () => {
 		const testEmails = JSON.stringify([
 			'onetwothreefour',
