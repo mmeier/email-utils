@@ -1,3 +1,4 @@
+import { normalizeEmail } from './normalizeEmail';
 import { parseStringArray } from './parseStringArray';
 
 export class EmailChecker {
@@ -14,7 +15,7 @@ export class EmailChecker {
 
 		const emailSet = new Set<string>();
 
-		emails.forEach(email => emailSet.add(email));
+		emails.map(email => normalizeEmail(email)).forEach(email => emailSet.add(email));
 
 		return emailSet.size;
 	}
