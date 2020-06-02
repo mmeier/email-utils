@@ -1,3 +1,4 @@
 .idea
+.serverless
 dist
 node_modules
