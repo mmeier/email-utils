@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
+    "start": "tsc && sls offline",
     "test": "jest"
   },
   "keywords": [],

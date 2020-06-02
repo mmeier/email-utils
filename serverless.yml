@@ -1,0 +1,16 @@
+service: email-util
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  checkEmails:
+    handler: dist/aws/lambdaHandler.checkEmails
+    events:
+      - http:
+          path: check-emails
+          method: post
