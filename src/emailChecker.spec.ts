@@ -30,6 +30,17 @@ describe('emailChecker', () => {
 		expect(emailChecker.checkEmails(testEmails)).toEqual(1);
 	});
 
+	it('should not count empty strings as emails', () => {
+		const testEmails = JSON.stringify([
+			'one@gmail.com',
+			'two@gmail.com',
+			'',
+			'four@gmail.com',
+		]);
+
+		expect(emailChecker.checkEmails(testEmails)).toEqual(3);
+	});
+
 	it('should throw an error if the parser does', () => {
 		const dummyParser = () => {
 			throw new Error('Boom!');

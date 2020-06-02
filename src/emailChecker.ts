@@ -15,7 +15,9 @@ export class EmailChecker {
 
 		const emailSet = new Set<string>();
 
-		emails.map(email => normalizeEmail(email)).forEach(email => emailSet.add(email));
+		emails.filter(email => !!email)
+			.map(email => normalizeEmail(email))
+			.forEach(email => emailSet.add(email));
 
 		return emailSet.size;
 	}
